@@ -46,3 +46,11 @@ export const unusedHiragana = [
 	"を",
 	"ん",
 ];
+
+/**
+ * @returns 出題対象IDの取得
+ */
+export const getQuiz = (): PuzzleData => {
+	const idx = Math.floor(Math.random() * puzzleData.length);
+	return puzzleData[idx];
+};

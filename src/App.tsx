@@ -1,21 +1,17 @@
 import { FC, useState } from "react";
 import "./App.css";
+import { MaruDialog } from "./Components/MaruDialog";
 import { Page } from "./Components/Page";
-import { AppContext, AppContextProps, getQuiz } from "./Constants/AppContext";
 import "./Styles/App.scss";
 
 const App: FC = () => {
-	const [quizType, setQuizType] = useState<AppContextProps["quiz"]>(getQuiz());
-
-	const defaultContext: AppContextProps = {
-		quiz: quizType,
-		setQuiz: setQuizType,
-	};
+	const [index, setIndex] = useState<number>(0);
 
 	return (
-		<AppContext.Provider value={defaultContext}>
-			<Page />
-		</AppContext.Provider>
+		<>
+			<MaruDialog setIndex={setIndex} />
+			<Page index={index} />
+		</>
 	);
 };
 

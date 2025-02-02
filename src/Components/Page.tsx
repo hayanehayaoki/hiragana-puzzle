@@ -1,19 +1,19 @@
-import { FC, memo, useContext } from "react";
-import { AppContext } from "../Constants/AppContext";
+import { FC, memo } from "react";
 import { Column } from "./Column";
-import { MaruDialog } from "./MaruDialog";
 import { Piece } from "./Piece";
-import { unusedHiragana } from "./puzzleData";
+import { getQuiz, unusedHiragana } from "./puzzleData";
 
-export const Page: FC = memo(function Page() {
-	const { quiz } = useContext(AppContext);
-	// 問題
+type PageProps = {
+	index: number;
+};
+
+export const Page: FC<PageProps> = memo(function Page({ index }: PageProps) {
+	const quiz = getQuiz();
 	const hiraganas = quiz.name.split("");
 	const hiraganaIndex = hiraganas.length;
 
 	return (
 		<div className="Page">
-			<MaruDialog />
 			<img src={`./image/${quiz.id}.png`} />
 			<div
 				className="Row__column"
@@ -22,12 +22,12 @@ export const Page: FC = memo(function Page() {
 				}}
 			>
 				{hiraganas.map((char) => {
-					return <Column key={char} char={char} />;
+					return <Column key={`${index}-${char}}`} char={char} />;
 				})}
 			</div>
 			<div className="Row__piece">
 				{getPieces(hiraganas).map((char, index) => {
-					return <Piece key={index + char} char={char} index={index} />;
+					return <Piece key={`${index}-${char}}`} char={char} index={index} />;
 				})}
 			</div>
 		</div>

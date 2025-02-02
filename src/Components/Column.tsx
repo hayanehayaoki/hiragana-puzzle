@@ -20,7 +20,6 @@ export const Column: FC<ColumnProps> = memo(function Piece(props: ColumnProps) {
 				if (showDialog) {
 					const element = document.getElementsByTagName("dialog")[0];
 					if (element instanceof HTMLDialogElement) {
-						console.log("G");
 						(element as HTMLDialogElement).className = "Dialog__shown";
 					}
 				}
